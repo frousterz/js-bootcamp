@@ -1,2 +1,2 @@
 # js-bootcamp
-AvaScript Bootcamp Tutorial
+JavaScript Bootcamp Tutorial
