@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+  <head>
+    <title>todo-app</title>
+    <!-- <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" /> -->
+    <link rel="stylesheet" href="./todo-app.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <h1>Todos</h1>
+    <h4>Search</h6>
+    <input type="text" placeholder="Search..." id="search-text">
+    <!-- This will contain all the todos -->
+    <div class="todos-container"></div>
+    <label style="color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+      Hide todos? <input id="hide-todos" type="checkbox">
+    </label>
+    <br>
+
+    <!-- Form -->
+    <form id="create-todo-form">
+      <h4>Create Todo</h4>
+      <input type="text" placeholder="Todo text..." name="todoText">
+      <button id="create-todo">Create Todo</button>
+    </form>
+    <!-- JS -->
+    <script type='text/javascript' src="./todo-app.js"></script>
+  </body>
+</html>

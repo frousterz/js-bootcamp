@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+  <head>
+    <title>index</title>
+    <!-- <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" /> -->
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./notes-app.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <h1>Notes App</h1>
+    <h2>Take notes and never forget</h2>
+    
+    <br><br>
+    <!-- Filtering: Search notes -->
+    <input type="text" placeholder="search..." id="search-text">
+    
+    <!-- Sorting notes -->
+    <select id="sort-notes">
+      <option value="byUpdated">Sort by last updated</option>
+      <option value="byCreated">Sort by recently created</option>
+      <option value="alphabetical">Sort alphabetically</option>
+    </select>
+    <!-- List to render the notes -->
+    <ul class="notes-list"></ul>
+    
+    <!-- Form -->
+    <form id="create-note-form">
+      <h4>Create New Note</h4>
+      <input type="text" placeholder="Note Title" name="noteTitle">
+      <input type="text" placeholder="Note Body" name="noteBody">
+      <br>
+      <button>Submit</button>
+    </form>
+
+    <div class="buttons">
+      <button id="create-note">Create Note</button>
+    </div>
+
+    <p class="note">This application was created by frousterz</p>
+    
+    <!-- JS -->
+    <script src="./notes-app.js"></script>
+  </body>
+</html>
