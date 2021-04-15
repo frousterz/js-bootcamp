@@ -17,8 +17,14 @@ const saveNotes = (notes) => {
 // Generate the DOM structure for a note
 const generateNoteDOM = (note) => {
   let newNoteEl = document.createElement('li')
+  let buttonEl  = document.createElement('button')
+
   newNoteEl.textContent = note.title
   newNoteEl.classList = 'note'
+  buttonEl.textContent = 'x'
+  buttonEl.classList = 'remove-note-btn'
+
+  newNoteEl.appendChild(buttonEl)
   return newNoteEl
 }
 

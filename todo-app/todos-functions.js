@@ -15,9 +15,25 @@ const saveTodos = (todos) => {
 
 // Generate Todo DOM
 const generateTodoDOM = (todo) => {
-  let newTodoEl = document.createElement('p')
-  newTodoEl.textContent = todo.text
-  return newTodoEl
+  let todoContainerEl = document.createElement('div')
+  let todoText = document.createElement('span')
+  let checkbox = document.createElement('input')
+  let removeButton = document.createElement('button')
+
+  // Setup the checkbox
+  checkbox.setAttribute('type',  'checkbox')
+  todoContainerEl.appendChild(checkbox)
+
+  // Setup the todo text
+  todoText.textContent = todo.text
+  todoContainerEl.appendChild(todoText)
+
+  // Setup the remove button
+  removeButton.textContent = 'x'
+  removeButton.classList = 'remove-todo-btn'
+  todoContainerEl.appendChild(removeButton)
+
+  return todoContainerEl
 }
 
 // Generate Summary DOM
