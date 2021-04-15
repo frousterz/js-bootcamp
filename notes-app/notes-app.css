@@ -51,4 +51,8 @@ input {
   margin: 10px 0;
 }
 
+select {
+  max-width: 645px;
+}
+
 
