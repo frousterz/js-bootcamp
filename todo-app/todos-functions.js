@@ -22,17 +22,40 @@ const generateTodoDOM = (todo) => {
 
   // Setup the checkbox
   checkbox.setAttribute('type',  'checkbox')
-  todoContainerEl.appendChild(checkbox)
+  checkbox.checked = todo.completed
+  checkbox.addEventListener('change', () => {
+    markTodoAsCompleted(todo.id)
+    saveTodos(todos)
+    renderTodos(todos, filters)
+  })
 
+  // Update Todo
+  const markTodoAsCompleted = (id) => {
+    const todo = todos.find(function(todo) {
+      return todo.id === id
+    })
+
+    if (todo) {
+      todo.completed = !todo.completed
+    }
+  }
+  
   // Setup the todo text
   todoText.textContent = todo.text
-  todoContainerEl.appendChild(todoText)
-
+  
   // Setup the remove button
   removeButton.textContent = 'x'
   removeButton.classList = 'remove-todo-btn'
+  removeButton.addEventListener('click', function(){
+    removeTodo(todo.id)
+    saveTodos(todos)
+    renderTodos(todos, filters)
+  })
+  
+  // Add elements to the container
+  todoContainerEl.appendChild(checkbox)
+  todoContainerEl.appendChild(todoText)
   todoContainerEl.appendChild(removeButton)
-
   return todoContainerEl
 }
 
@@ -52,7 +75,7 @@ const generateSummaryDOM = (todos) => {
 const renderTodos = (todos, filters) => {
   // Filter the todos based on the search text
   let filteredTodos = todos.filter( (todo) => {
-    return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+    return todo.text.toLowerCase().includes(filters .searchText.toLowerCase())
   })
 
   // hide completed todos
@@ -73,4 +96,14 @@ const renderTodos = (todos, filters) => {
     let newTodoEl = generateTodoDOM(todo)
     todosContainer.appendChild(newTodoEl)
   })
+}
+
+// Remove Todo
+const removeTodo = (id) => {
+  const todoIndex = todos.findIndex(function(todo){
+    return todo.id === id
+  })
+
+  if (todoIndex > -1)
+    todos.splice(todoIndex, 1)
 }

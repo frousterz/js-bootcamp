@@ -20,6 +20,7 @@ document.querySelector('#search-text').addEventListener('input', (event) => {
 document.querySelector('#create-note-form').addEventListener('submit', function(event) {
   event.preventDefault()
   notes.push({
+    id: uuidv4(),
     title: event.target.elements.noteTitle.value
            ? event.target.elements.noteTitle.value
            :'Unnamed Note',
