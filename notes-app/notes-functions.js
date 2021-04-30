@@ -42,10 +42,14 @@ const removeNote = (id) => {
 // Generate the DOM structure for a note
 const generateNoteDOM = (note) => {
   let newNoteEl = document.createElement('li')
+  let textEl = document.createElement('a')
   let buttonEl  = document.createElement('button')
 
-  newNoteEl.textContent = note.title
   newNoteEl.classList = 'note'
+  
+  textEl.textContent = note.title
+  textEl.setAttribute('href', `/edit.html#${note.id}`)
+
   buttonEl.textContent = 'x'
   buttonEl.classList = 'remove-note-btn'
   buttonEl.addEventListener('click', () => {
@@ -54,6 +58,7 @@ const generateNoteDOM = (note) => {
     renderNotes(notes, filters)
   })
 
+  newNoteEl.appendChild(textEl)
   newNoteEl.appendChild(buttonEl)
   return newNoteEl
 }
