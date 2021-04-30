@@ -26,6 +26,17 @@ button {
   border-radius: 5px;
   max-width: fit-content;
   margin: 5px 0;
+  cursor: pointer;
+}
+
+.remove-note-btn {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin: 0 20px;
+  max-width: none;
+  font-size: 12px;
+  padding: 0;
 }
 
 ul {
@@ -33,11 +44,12 @@ ul {
   padding-top: 15px;
   padding-bottom: 15px;
   max-width: 600px;
+  list-style: none;
 }
 
 ul li {
   color: #fff;
-  text-decoration: none;
+  list-style: none;
   list-style: decimal;
   font-size: 18px;
 }
@@ -55,4 +67,11 @@ select {
   max-width: 645px;
 }
 
+textarea {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 5px;
+  font-size: 14px;
+  resize: none;
+  border: none;
+}
 

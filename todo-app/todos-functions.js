@@ -15,9 +15,48 @@ const saveTodos = (todos) => {
 
 // Generate Todo DOM
 const generateTodoDOM = (todo) => {
-  let newTodoEl = document.createElement('p')
-  newTodoEl.textContent = todo.text
-  return newTodoEl
+  let todoContainerEl = document.createElement('div')
+  let todoText = document.createElement('span')
+  let checkbox = document.createElement('input')
+  let removeButton = document.createElement('button')
+
+  // Setup the checkbox
+  checkbox.setAttribute('type',  'checkbox')
+  checkbox.checked = todo.completed
+  checkbox.addEventListener('change', () => {
+    markTodoAsCompleted(todo.id)
+    saveTodos(todos)
+    renderTodos(todos, filters)
+  })
+
+  // Update Todo
+  const markTodoAsCompleted = (id) => {
+    const todo = todos.find(function(todo) {
+      return todo.id === id
+    })
+
+    if (todo) {
+      todo.completed = !todo.completed
+    }
+  }
+  
+  // Setup the todo text
+  todoText.textContent = todo.text
+  
+  // Setup the remove button
+  removeButton.textContent = 'x'
+  removeButton.classList = 'remove-todo-btn'
+  removeButton.addEventListener('click', function(){
+    removeTodo(todo.id)
+    saveTodos(todos)
+    renderTodos(todos, filters)
+  })
+  
+  // Add elements to the container
+  todoContainerEl.appendChild(checkbox)
+  todoContainerEl.appendChild(todoText)
+  todoContainerEl.appendChild(removeButton)
+  return todoContainerEl
 }
 
 // Generate Summary DOM
@@ -36,7 +75,7 @@ const generateSummaryDOM = (todos) => {
 const renderTodos = (todos, filters) => {
   // Filter the todos based on the search text
   let filteredTodos = todos.filter( (todo) => {
-    return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+    return todo.text.toLowerCase().includes(filters .searchText.toLowerCase())
   })
 
   // hide completed todos
@@ -57,4 +96,14 @@ const renderTodos = (todos, filters) => {
     let newTodoEl = generateTodoDOM(todo)
     todosContainer.appendChild(newTodoEl)
   })
+}
+
+// Remove Todo
+const removeTodo = (id) => {
+  const todoIndex = todos.findIndex(function(todo){
+    return todo.id === id
+  })
+
+  if (todoIndex > -1)
+    todos.splice(todoIndex, 1)
 }

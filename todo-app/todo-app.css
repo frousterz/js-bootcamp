@@ -11,10 +11,9 @@ h1,h2,h3,h4 {
   font-weight: bold;
 }
 
-p {
+p, span {
   color: white;
   font-size: 16px;
-  text-decoration: underline;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -48,6 +47,20 @@ input {
   padding: 10px;
   max-width: 625px;
   margin: 10px 0;
+}
+
+input[type='checkbox'] {
+  margin: 0 10px 0 0;
+}
+
+.remove-todo-btn {
+  /* border-radius: 10px; */
+  width: 50px;
+  height: 20px;
+  margin: 0 20px;
+  max-width: none;
+  font-size: 12px;
+  padding: 0;
 }
 
 
