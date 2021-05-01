@@ -12,17 +12,24 @@ if (note === undefined) {
 
 document.querySelector('#note-title').value = note.title
 document.querySelector('#note-body').value = note.body
+const dateElement = document.querySelector('#last-edit')
+
+dateElement.textContent = generateLastEdited(note.updatedAt)
 
 // Events
 // Update note title
 document.querySelector('#note-title').addEventListener('input', (event) => {
   note.title = event.target.value
+  note.updatedAt = moment().valueOf()
+  dateElement.textContent = generateLastEdited(note.updatedAt)
   saveNotes(notes)
 })
 
 // Update note body
 document.querySelector('#note-body').addEventListener('input', (event) => {
   note.body = event.target.value
+  note.updatedAt = moment().valueOf()
+  dateElement.textContent = generateLastEdited(note.updatedAt)
   saveNotes(notes)
 })
 
@@ -45,7 +52,7 @@ window.addEventListener('storage', (event) => {
     if (note === undefined) {
       location.assign('/')
     }
-    
+    dateElement.textContent = generateLastEdited(note.updatedAt)
     document.querySelector('#note-title').value = note.title
     document.querySelector('#note-body').value = note.body
   }
