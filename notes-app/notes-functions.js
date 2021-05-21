@@ -1,12 +1,7 @@
 // Read existing notes from localStorage
 const getSavedNotes = () => {
   const notesJSON = localStorage.getItem('notes')
-
-  if (notesJSON !== null) {
-    return JSON.parse(notesJSON)
-  } else {
-    return []
-  }
+  return notesJSON !== null ? JSON.parse(notesJSON) : [ ]
 }
 
 // Save Notes to localStorage
@@ -17,7 +12,7 @@ const saveNotes = (notes) => {
 // Sort notes by filterBy
 const sortNotes = (notes, sortBy) => {
   if(sortBy === 'byEdited'){
-    return notes.sort(function(a, b){
+    return notes.sort((a, b) => {
       if(a.updatedAt > b.updatedAt) {
         return -1
       } else if(a.updatedAt < b.updatedAt){
@@ -27,7 +22,7 @@ const sortNotes = (notes, sortBy) => {
       }
     })
   } else if(sortBy === 'byCreated'){
-    return notes.sort(function(a, b){
+    return notes.sort((a, b) => {
       if(a.createdAt > b.createdAt) {
         return -1
       } else if(a.createdAt < b.createdAt){
@@ -37,7 +32,7 @@ const sortNotes = (notes, sortBy) => {
       }
     })
   } else if(sortBy === 'alphabetical'){
-    return notes.sort(function(a, b){
+    return notes.sort((a, b) => {
       if(a.title.toLowerCase() < b.title.toLowerCase()) {
         return -1
       } else if(a.title.toLowerCase() > b.title.toLowerCase()){
@@ -59,7 +54,7 @@ const renderNotes = (notes, filters) => {
 
   document.querySelector('.notes-list').innerHTML = ''
   
-  filteredNotes.forEach(function(note){
+  filteredNotes.forEach((note) => {
     let newNoteEl = generateNoteDOM(note)
     document.querySelector('.notes-list').appendChild(newNoteEl)
   })
@@ -67,9 +62,7 @@ const renderNotes = (notes, filters) => {
 
 // Remove a note from the list
 const removeNote = (id) => {
-  const noteIndex = notes.findIndex(function(note){
-    return note.id === id
-  })
+  const noteIndex = notes.findIndex((note) => note.id === id)
 
   if (noteIndex > -1) {
     notes.splice(noteIndex, 1)
@@ -101,7 +94,4 @@ const generateNoteDOM = (note) => {
 }
 
 // Generate Las Edited Message
-const generateLastEdited = (timestamp) => {
-  return `Last edited ${moment(timestamp).fromNow()}`
-}
-
+const generateLastEdited = (timestamp) => `Last edited ${moment(timestamp).fromNow()}`

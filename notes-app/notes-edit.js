@@ -2,11 +2,9 @@ const noteId = location.hash.substring(1)
 let notes = getSavedNotes()
 
 // Find note based on the id from the URL
-let note = notes.find(function (note) {
-  return note.id === noteId
-})
+let note = notes.find((note) => note.id === noteId)
 
-if (note === undefined) {
+if (!note) {
   location.assign('/')
 }
 
@@ -34,7 +32,7 @@ document.querySelector('#note-body').addEventListener('input', (event) => {
 })
 
 // Remove note and go the home page
-document.querySelector('#remove-note').addEventListener('click', function() {
+document.querySelector('#remove-note').addEventListener('click', () => {
   removeNote(noteId)
   saveNotes(notes)
   location.assign('/')
@@ -45,11 +43,9 @@ window.addEventListener('storage', (event) => {
   if (event.key === 'notes') {
     notes = JSON.parse(event.newValue)
 
-    note = notes.find(function (note) {
-      return note.id === noteId
-    })
+    note = notes.find((note) => note.id === noteId)
     
-    if (note === undefined) {
+    if (!note) {
       location.assign('/')
     }
     dateElement.textContent = generateLastEdited(note.updatedAt)

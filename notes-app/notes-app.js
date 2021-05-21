@@ -18,7 +18,7 @@ document.querySelector('#search-text').addEventListener('input', (event) => {
 })
 
 // Manipulating form: create note
-document.querySelector('#create-note').addEventListener('click', function(event) {
+document.querySelector('#create-note').addEventListener('click', (event) => {
   event.preventDefault()
   const timestamp = moment().valueOf()
 
@@ -36,13 +36,13 @@ document.querySelector('#create-note').addEventListener('click', function(event)
 })
 
 // Sorting using the select
-document.querySelector('#sort-notes').addEventListener('change', function(event) {
+document.querySelector('#sort-notes').addEventListener('change', (event) => {
   filters.sortBy = event.target.value
   console.log("---> filters.sortBy: ", filters.sortBy)
   renderNotes(notes, filters)  
 })
 
-window.addEventListener('storage', function(event) {
+window.addEventListener('storage', (event) => {
   if(event.key == 'notes'){
     notes = JSON.parse(event.newValue)
     renderNotes(notes, filters)
